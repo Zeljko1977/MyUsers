@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Add User</h2>
+  <mat-card>
+    <form [formGroup]="form" (ngSubmit)="form.valid && addTodo()">
+      <mat-checkbox formControlName="active">Activate user</mat-checkbox>
+      <mat-form-field appearance="outline">
+        <input formControlName="name" matInput placeholder="Name" />
+      </mat-form-field>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!form.valid"
+      >
+        Add User
+      </button>
+    </form>
+  </mat-card>
+</div>

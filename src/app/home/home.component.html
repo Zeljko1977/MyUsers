@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>Table of Users</h1>
+      <button
+        [disabled]="isButtonDisabled | async"
+        type="submit"
+        mat-raised-button
+        color="primary"
+        (click)="openDialog()"
+      >
+        Add User
+      </button>
+    </div>
+    <div class="panel-body">
+      <table class="table-latitude">
+        <caption>
+          User Information
+        </caption>
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Active</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <th>{{ user.id }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.active }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
