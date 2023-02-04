@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserStore } from '../state/store';
 import { User } from '../models/user.model';
 import { v4 as uuidv4 } from 'uuid';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-add-user',
@@ -16,7 +16,7 @@ export class AddUserComponent implements OnInit {
   isActive: boolean = false;
 
   constructor(
-    private userStore: UserStore,
+    private userService: UserService,
     private Ref: MatDialogRef<AddUserComponent>
   ) {}
 
@@ -33,11 +33,8 @@ export class AddUserComponent implements OnInit {
       name: this.form.value.name,
       active: this.form.value.active,
     };
-    this.userStore.update((state) => {
-      return {
-        users: [...state.users, this.user],
-      };
-    });
-    this.Ref.close('Closing from function');
+    this.userService.addUser(this.user);
+
+    this.Ref.close('Closing modal');
   }
 }

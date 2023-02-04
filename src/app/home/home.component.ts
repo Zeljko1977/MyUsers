@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { User } from '../models/user.model';
-import { UserQuery } from '../state/query';
-import { UserStore } from '../state/store';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserComponent } from '../add-user/add-user.component';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-home',
@@ -13,16 +11,14 @@ import { AddUserComponent } from '../add-user/add-user.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  users: User[] = [];
-  isButtonDisabled: Observable<boolean>;
+  users$: Observable<User[]>;
+  isButtonDisabled$: Observable<boolean>;
 
-  constructor(private userQuery: UserQuery, private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userQuery.getUsers().subscribe((res) => {
-      this.users = res;
-    });
-    this.isButtonDisabled = this.userQuery.isButtonDisabled();
+    this.users$ = this.userService.getUsers();
+    this.isButtonDisabled$ = this.userService.isButtonDisabled();
   }
   openDialog(): void {
     this.matDialog.open(AddUserComponent);

@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, UsersComponent, AddUserComponent],
@@ -29,7 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     MatDialogModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
