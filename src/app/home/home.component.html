@@ -26,7 +26,13 @@
           <tr *ngFor="let user of users$ | async">
             <th>{{ user.id }}</th>
             <td>{{ user.name }}</td>
-            <td>{{ user.active }}</td>
+            <td class="active-column">
+              <input
+                type="checkbox"
+                [checked]="user.active"
+                (change)="onChangeStatus($event, user.id)"
+              />
+            </td>
           </tr>
         </tbody>
       </table>

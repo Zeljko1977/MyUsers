@@ -8,6 +8,10 @@ body {
 .container {
   margin: 20px;
 }
+.active-column {
+  display: flex;
+  justify-content: center;
+}
 
 .table-latitude {
   width: 100%;

@@ -23,4 +23,7 @@ export class HomeComponent {
   openDialog(): void {
     this.matDialog.open(AddUserComponent);
   }
+  onChangeStatus(event: any, userId: string): void {
+    this.userService.changeUserStatus(event.target.checked, userId);
+  }
 }
